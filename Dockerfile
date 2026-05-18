@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Compile monorepo and build bundle
 RUN npm run compile && npm run build
