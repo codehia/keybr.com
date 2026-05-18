@@ -20,7 +20,7 @@ export function SetupAds({
 }: {
   readonly children: ReactNode;
 }): ReactNode {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.DISABLE_ADS) {
     return null;
   }
   const html =
@@ -42,6 +42,9 @@ export const AdBanner = memo(function AdBanner({
 }: {
   readonly name: "BANNER_160X600_1" | "BANNER_970X90_1";
 }): ReactNode {
+  if (process.env.DISABLE_ADS) {
+    return null;
+  }
   const { id, width, height } = inventory[name];
   if (process.env.NODE_ENV === "development") {
     return (

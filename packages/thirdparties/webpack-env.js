@@ -26,4 +26,8 @@ for (const key of [
   ENV[`process.env.${key}`] = JSON.stringify(process.env[key]);
 }
 
+ENV["process.env.DISABLE_ADS"] = JSON.stringify(
+  process.env.DISABLE_ADS === "true",
+);
+
 export { ENV };

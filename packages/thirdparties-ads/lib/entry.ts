@@ -1,7 +1,9 @@
 import { loadScripts } from "./scripts.ts";
 import { showAdBlockerStatus } from "./status.ts";
 
-main();
+if (!process.env.DISABLE_ADS) {
+  main();
+}
 
 function main(): void {
   Promise.resolve()
