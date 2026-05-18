@@ -7,7 +7,8 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install dependencies
-RUN npm install
+RUN npm install && \
+    [ "$(uname -m)" = "aarch64" ] && npm install glob-hasher-linux-arm64-gnu --no-save || true
 
 # Compile monorepo and build bundle
 RUN npm run compile && npm run build
