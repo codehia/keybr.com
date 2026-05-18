@@ -36,6 +36,61 @@ Yes!
 * **[Add a language.](docs/custom_language.md)** Add a custom language to keybr.com
 * **[Join our Discord server](https://discord.gg/gY4RA4enVH).** To discuss things in a less formal way.
 
+## Self-Hosting
+
+### Requirements
+
+- Docker with Compose
+- A domain or Tailscale hostname
+
+### Setup
+
+```bash
+git clone https://github.com/codehia/keybr.com.git
+cd keybr.com
+```
+
+Create a `.env` file:
+
+```env
+APP_URL=http://<your-hostname>:30044/
+
+# Cookie
+COOKIE_SECURE=false
+COOKIE_DOMAIN=<your-hostname>
+
+# Database (SQLite)
+DATABASE_CLIENT=sqlite
+DATABASE_FILENAME=/home/node/.local/state/keybr/keybr.db
+
+# Google OAuth
+AUTH_GOOGLE_CLIENT_ID=<your-client-id>
+AUTH_GOOGLE_CLIENT_SECRET=<your-client-secret>
+
+# Mail (required but unused if only using OAuth)
+MAIL_DOMAIN=localhost
+MAIL_KEY=none
+```
+
+Create the data directory and build:
+
+```bash
+mkdir -p .local/state/keybr
+docker compose up --build -d
+```
+
+### Google OAuth Setup
+
+1. Go to Google Cloud Console → APIs & Services → Credentials
+2. Create an OAuth 2.0 Client ID
+3. Add redirect URI: `http://<your-hostname>:30044/auth/oauth-callback/google`
+4. Copy the client ID and secret into `.env`
+
+### Notes
+
+- Data is persisted in `./.local/state/keybr/`
+- Ads are disabled by default in this fork
+
 ## License
 
 Released under the GNU Affero General Public License v3.0.
