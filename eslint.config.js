@@ -121,7 +121,7 @@ export default [
         version: "detect",
       },
       node: {
-        version: ">=24",
+        version: ">=26",
         allowModules: [
           // Prod libraries.
           "@fastr/client",
@@ -149,7 +149,7 @@ export default [
           "@sosimple/fsx-file",
           "@sosimple/fsx-lockfile",
           "@sosimple/retry",
-          "@unicode/unicode-16.0.0",
+          "@unicode/unicode-17.0.0",
           "clsx",
           "debug",
           "knex",
